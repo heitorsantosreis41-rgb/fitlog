@@ -407,6 +407,12 @@
       <label class="field">Idade
         <input type="number" id="qAge" placeholder="Ex: 29" min="12" max="90">
       </label>
+      <label class="field">Qual seu objetivo?
+        <div class="pill-group" id="goalGroup">
+          <button type="button" class="pill" data-value="ganhar_massa">Ganhar massa muscular</button>
+          <button type="button" class="pill" data-value="perder_gordura">Perder gordura</button>
+        </div>
+      </label>
       <label class="field">Onde você treina?
         <div class="pill-group" id="locationGroup"></div>
       </label>
@@ -511,15 +517,25 @@
     const bmr = (10 * weight) + (6.25 * height) - (5 * age) - 78;
     return Math.round(bmr * 1.4);
   }
-  function buildDiet(weight, height, age){
+  function repRangeForGoal(goal){
+    return goal === 'ganhar_massa' ? '4x8-10' : '3x15';
+  }
+
+  function buildDiet(weight, height, age, goal){
     const maintenance = estimateCalories(weight, height, age);
-    const target = Math.max(1200, maintenance - 450);
-    const protein = Math.round(weight * 1.8);
-    const carbs = Math.round((target * 0.4) / 4);
+    const isBulk = goal === 'ganhar_massa';
+    const target = isBulk ? maintenance + 350 : Math.max(1200, maintenance - 450);
+    const protein = Math.round(weight * (isBulk ? 2.0 : 1.8));
+    const carbs = Math.round((target * (isBulk ? 0.45 : 0.4)) / 4);
     const fat = Math.round((target * 0.25) / 9);
     return {
       target, protein, carbs, fat,
-      meals: [
+      meals: isBulk ? [
+        {label:'Café da manhã', text:'Ovos, aveia com fruta e pasta de amendoim.'},
+        {label:'Almoço', text:'Proteína (frango, carne ou peixe), arroz/batata à vontade e legumes.'},
+        {label:'Lanche da tarde', text:'Whey ou iogurte com granola e fruta, ou um sanduíche reforçado.'},
+        {label:'Jantar', text:'Proteína magra com carboidrato (arroz, macarrão ou batata) e vegetais.'}
+      ] : [
         {label:'Café da manhã', text:'Ovos mexidos ou omelete, fruta e café sem açúcar.'},
         {label:'Almoço', text:'Proteína magra (frango, peixe ou tofu), salada à vontade e uma porção de carboidrato integral.'},
         {label:'Lanche da tarde', text:'Iogurte natural com fruta, ou um punhado de castanhas.'},
@@ -554,6 +570,7 @@
   let wizardMode = 'onboarding'; // 'onboarding' | 'changePlan' | 'editInfo'
   let authMode = 'signup'; // 'signup' | 'login'
   let selectedPlan = null;
+  let selectedGoal = null;
   let selectedLocation = null;
   let selectedFreq = null;
   let pollInterval = null;
@@ -597,6 +614,7 @@
       wizardStepCount.textContent = 'Passo 3 de ' + STEP_TOTAL;
       wizardProgressFill.style.width = '100%';
       wizardNextBtn.textContent = mode3ButtonLabel();
+      renderGoalPills();
       renderLocationPills();
       renderFreqPills();
       prefillInfoIfEditing();
@@ -673,6 +691,20 @@
     document.getElementById('checkPaymentBtn').onclick = poll;
   }
 
+  /* ---- passo 3: pills de objetivo ---- */
+  function renderGoalPills(){
+    const group = document.getElementById('goalGroup');
+    [...group.children].forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.value === selectedGoal);
+    });
+  }
+  document.getElementById('goalGroup').addEventListener('click', (e) => {
+    const pill = e.target.closest('.pill');
+    if(!pill) return;
+    selectedGoal = pill.dataset.value;
+    renderGoalPills();
+  });
+
   /* ---- passo 3: pills de local (trava combos pro Premium) ---- */
   const LOCATION_OPTIONS = [
     { value:'casa', label:'Casa', premiumOnly:false },
@@ -722,8 +754,10 @@
       document.getElementById('qWeight').value = profile.weight || '';
       document.getElementById('qHeight').value = profile.height || '';
       document.getElementById('qAge').value = profile.age || '';
+      selectedGoal = profile.goal || null;
       selectedLocation = profile.location || null;
       selectedFreq = profile.frequency || null;
+      renderGoalPills();
       renderLocationPills();
       renderFreqPills();
     }
@@ -811,21 +845,53 @@
       const height = Number(document.getElementById('qHeight').value);
       const age = Number(document.getElementById('qAge').value);
       const err = document.getElementById('infoError');
-      if(!weight || !height || !age || !selectedLocation || !selectedFreq){
+      if(!weight || !height || !age || !selectedGoal || !selectedLocation || !selectedFreq){
         err.classList.add('show');
         return;
       }
       err.classList.remove('show');
       await sb.from('profiles').update({
-        weight, height, age, location: selectedLocation, frequency: selectedFreq,
+        weight, height, age, goal: selectedGoal, location: selectedLocation, frequency: selectedFreq,
         updated_at: new Date().toISOString()
       }).eq('id', currentUser.id);
       await fetchProfile();
       closeWizard();
-      openDashboard();
+      await openDashboard();
+      generateWorkoutWithAI(); // gera em segundo plano, painel já mostra algo enquanto isso
       return;
     }
   });
+
+  /* ============ geração por IA (Gemini via Edge Function) ============ */
+  async function generateWorkoutWithAI(){
+    if(!profile || !profile.weight) return;
+    const dashDays = document.getElementById('dashDays');
+    const originalDaysHtml = dashDays.innerHTML;
+    dashDays.innerHTML = '<div class="waiting-box"><div class="spinner"></div><p>Gerando seu treino personalizado com IA...</p></div>';
+
+    try{
+      const { data, error } = await sb.functions.invoke('generate-workout', {
+        body: {
+          weight: profile.weight, height: profile.height, age: profile.age,
+          goal: profile.goal, location: profile.location, frequency: profile.frequency,
+          includeDiet: profile.plan === 'premium'
+        }
+      });
+      if(error || !data || !data.days){
+        console.error('AI generation failed, keeping fallback', error);
+        dashDays.innerHTML = originalDaysHtml;
+        return;
+      }
+      const updatePayload = { ai_routine: data.days, updated_at: new Date().toISOString() };
+      if(data.diet) updatePayload.ai_diet = data.diet;
+      await sb.from('profiles').update(updatePayload).eq('id', currentUser.id);
+      await fetchProfile();
+      renderDashboard();
+    } catch(e){
+      console.error(e);
+      dashDays.innerHTML = originalDaysHtml;
+    }
+  }
 
   /* ============ dashboard ============ */
   const dashboard = document.getElementById('dashboard');
@@ -859,10 +925,11 @@
       return;
     }
 
-    const { weight, height, age, location, frequency, plan } = profile;
-    const routine = buildRoutine(location, frequency);
+    const { weight, height, age, goal, location, frequency, plan, ai_routine, ai_diet } = profile;
     const kcal = estimateCalories(weight, height, age);
     const bmi = (weight / Math.pow(height/100, 2)).toFixed(1);
+    const repTag = repRangeForGoal(goal);
+    const usingAI = Array.isArray(ai_routine) && ai_routine.length > 0;
 
     document.getElementById('dashReadouts').innerHTML =
       '<div class="readout"><div class="n">' + kcal + '</div><div class="l">Kcal/dia estimado</div></div>' +
@@ -870,18 +937,34 @@
       '<div class="readout"><div class="n">' + frequency + 'x</div><div class="l">' + escapeHtml(locationLabelFull(location)) + '</div></div>';
 
     let daysHtml = '';
-    routine.forEach(d => {
-      daysHtml += '<div class="day-card">';
-      daysHtml += '<div class="d-name">' + d.day + '</div><div class="d-focus">' + d.focusLabel + '</div>';
-      daysHtml += '<ul class="exercise-list">';
-      d.exercises.forEach(ex => { daysHtml += '<li>' + escapeHtml(ex) + '<span class="sr">3x12</span></li>'; });
-      daysHtml += '</ul></div>';
-    });
+    if(usingAI){
+      ai_routine.forEach(d => {
+        daysHtml += '<div class="day-card">';
+        daysHtml += '<div class="d-name">' + escapeHtml(d.day || '') + '</div><div class="d-focus">' + escapeHtml(d.focus || '') + '</div>';
+        daysHtml += '<ul class="exercise-list">';
+        (d.exercises || []).forEach(ex => { daysHtml += '<li>' + escapeHtml(ex.name || '') + '<span class="sr">' + escapeHtml(ex.sets_reps || repTag) + '</span></li>'; });
+        daysHtml += '</ul></div>';
+      });
+    } else {
+      const routine = buildRoutine(location, frequency);
+      routine.forEach(d => {
+        daysHtml += '<div class="day-card">';
+        daysHtml += '<div class="d-name">' + d.day + '</div><div class="d-focus">' + d.focusLabel + '</div>';
+        daysHtml += '<ul class="exercise-list">';
+        d.exercises.forEach(ex => { daysHtml += '<li>' + escapeHtml(ex) + '<span class="sr">' + repTag + '</span></li>'; });
+        daysHtml += '</ul></div>';
+      });
+    }
+    daysHtml += '<button type="button" class="btn btn-ghost btn-sm" id="regenerateBtn" style="margin-top:10px;">↻ Gerar treino novamente com IA</button>';
     document.getElementById('dashDays').innerHTML = daysHtml;
+    document.getElementById('regenerateBtn').addEventListener('click', generateWorkoutWithAI);
 
     const dietBox = document.getElementById('dashDiet');
     if(plan === 'premium'){
-      const diet = buildDiet(weight, height, age);
+      const diet = ai_diet ? {
+        target: ai_diet.target_kcal, protein: ai_diet.protein_g, carbs: ai_diet.carbs_g, fat: ai_diet.fat_g,
+        meals: ai_diet.meals || []
+      } : buildDiet(weight, height, age, goal);
       let dietHtml = '<div class="diet-card">';
       dietHtml += '<h3 class="display" style="font-size:20px; margin-bottom:6px;">Alimentação personalizada</h3>';
       dietHtml += '<p style="color:var(--gray); font-size:13px; margin-bottom:16px;">Foco em perda de peso, calculado pro seu corpo.</p>';
