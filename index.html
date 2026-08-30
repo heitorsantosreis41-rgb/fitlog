@@ -31,7 +31,6 @@
   .mono{font-family:var(--font-mono);}
   .display{font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.01em;}
 
-  /* ---------- header ---------- */
   header{position:sticky; top:0; z-index:50; background:var(--white); border-bottom:1px solid var(--line);}
   .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
   .logo{font-family:var(--font-display); font-size:26px;}
@@ -42,7 +41,6 @@
   .nav-cta{background:var(--ink); color:var(--white); padding:10px 20px; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
   @media (max-width:720px){ .nav-links{display:none;} }
 
-  /* ---------- hero ---------- */
   .hero{padding:88px 0 60px;}
   .hero-eyebrow{font-family:var(--font-mono); font-size:12px; letter-spacing:0.12em; color:var(--red); text-transform:uppercase; display:flex; align-items:center; gap:10px; margin-bottom:22px;}
   .hero-eyebrow::before{content:''; width:8px; height:8px; background:var(--red); border-radius:50%; display:inline-block; animation:blink 1.6s ease-in-out infinite;}
@@ -50,7 +48,8 @@
   .hero h1{font-family:var(--font-display); font-size:clamp(42px,7.4vw,92px); line-height:0.96; max-width:920px;}
   .hero h1 em{font-style:normal; color:var(--red);}
   .hero p.lead{font-size:18px; color:var(--gray); max-width:520px; margin:26px 0 36px; font-weight:500;}
-  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+  .hero-login-link{font-size:13px; font-weight:700; color:var(--gray); text-decoration:underline;}
   .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:16px 30px; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; border-radius:var(--radius); transition:transform .12s ease, box-shadow .12s ease;}
   .btn-primary{background:var(--red); color:var(--white);}
   .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(228,0,43,.28);}
@@ -70,7 +69,6 @@
   h2.section-title{font-family:var(--font-display); font-size:clamp(30px,4.6vw,52px); line-height:1; max-width:640px; margin-bottom:16px;}
   p.section-sub{color:var(--gray); font-size:16px; max-width:520px; margin-bottom:48px;}
 
-  /* ---------- pricing (marketing reference, read-only) ---------- */
   .pricing-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px;}
   .plan-card{border:2px solid var(--line); padding:40px 34px; position:relative; background:var(--white); display:flex; flex-direction:column;}
   .plan-card.featured{border-color:var(--red); background:var(--ink); color:var(--white);}
@@ -105,7 +103,7 @@
     .hero-stats{grid-template-columns:repeat(3,1fr); gap:14px;}
   }
 
-  /* ================= WIZARD (passos) ================= */
+  /* ================= WIZARD ================= */
   .wizard{position:fixed; inset:0; background:var(--white); z-index:300; display:none; flex-direction:column;}
   .wizard.open{display:flex;}
   .wizard-progress-track{width:100%; height:5px; background:var(--line); flex-shrink:0;}
@@ -128,13 +126,16 @@
 
   .form-error{display:none; color:var(--red); font-size:12.5px; margin:-8px 0 14px; text-align:left;}
   .form-error.show{display:block;}
+  .form-hint{font-size:12.5px; color:var(--gray); margin:-8px 0 14px; text-align:left;}
+
+  .auth-tabs{display:flex; gap:8px; margin-bottom:26px;}
+  .auth-tab{flex:1; padding:11px; text-align:center; font-size:12px; font-weight:700; border:1.5px solid var(--line); text-transform:uppercase; border-radius:999px;}
+  .auth-tab.active{background:var(--ink); color:var(--white); border-color:var(--ink);}
 
   .pill-group{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
   .pill{padding:11px 16px; border:1.5px solid var(--line); font-size:13px; font-weight:600; border-radius:999px; color:var(--gray); transition:all .12s;}
   .pill.active{background:var(--ink); color:var(--white); border-color:var(--ink);}
   .pill:hover{border-color:var(--ink);}
-  .pill.locked{opacity:.5;}
-  .pill .lock-tag{font-size:9px; color:var(--red); margin-left:4px; font-weight:800;}
 
   .wizard-plan-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; text-align:left;}
   .wizard-plan-card{border:2px solid var(--line); padding:26px 22px; cursor:pointer; transition:border-color .12s;}
@@ -148,13 +149,18 @@
   .wizard-plan-card li::before{content:'—'; color:var(--red); font-weight:700; flex-shrink:0;}
   @media (max-width:720px){ .wizard-plan-grid{grid-template-columns:1fr;} }
 
-  /* ---------- dashboard (resultado) ---------- */
+  .waiting-box{border:2px dashed var(--line); padding:30px 24px; text-align:center; margin-top:10px;}
+  .waiting-box .spinner{width:28px; height:28px; border:3px solid var(--line); border-top-color:var(--red); border-radius:50%; margin:0 auto 16px; animation:spin 0.8s linear infinite;}
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .waiting-box p{font-size:13.5px; color:var(--gray); margin-bottom:16px;}
+
+  /* ---------- dashboard ---------- */
   .dashboard{position:fixed; inset:0; background:var(--white); z-index:290; display:none; overflow-y:auto;}
   .dashboard.open{display:block;}
-  .dash-header{display:flex; justify-content:space-between; align-items:center; padding:22px 28px; border-bottom:1px solid var(--line);}
+  .dash-header{display:flex; justify-content:space-between; align-items:center; padding:22px 28px; border-bottom:1px solid var(--line); flex-wrap:wrap; gap:12px;}
   .dash-user{font-family:var(--font-display); font-size:20px;}
   .dash-badge{font-family:var(--font-mono); font-size:11px; background:var(--ink); color:var(--white); padding:5px 10px; text-transform:uppercase; margin-left:10px;}
-  .dash-actions{display:flex; gap:10px;}
+  .dash-actions{display:flex; gap:10px; flex-wrap:wrap;}
   .dash-body{max-width:760px; margin:0 auto; padding:48px 24px 80px;}
   .readout-row{display:flex; gap:22px; margin-bottom:34px; flex-wrap:wrap;}
   .readout .n{font-family:var(--font-mono); font-size:26px; font-weight:700; color:var(--red);}
@@ -173,9 +179,16 @@
   .diet-meal{font-size:13.5px; padding:10px 0; border-bottom:1px dashed var(--line);}
   .diet-meal:last-child{border-bottom:none;}
   .diet-meal b{display:block; font-size:12px; color:var(--red); text-transform:uppercase; margin-bottom:2px;}
+  .loading-screen{position:fixed; inset:0; background:var(--white); z-index:400; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px;}
+  .loading-screen .spinner{width:32px; height:32px; border:3px solid var(--line); border-top-color:var(--red); border-radius:50%; animation:spin 0.8s linear infinite;}
 </style>
 </head>
 <body>
+
+<div class="loading-screen" id="loadingScreen">
+  <div class="spinner"></div>
+  <p class="mono" style="font-size:12px; color:var(--gray); text-transform:uppercase;">Carregando</p>
+</div>
 
 <header>
   <div class="wrap nav">
@@ -195,7 +208,7 @@
     <p class="lead">Crie sua conta, escolha seu plano e monte um treino que respeita seu peso, sua altura e seu tempo — não o de ninguém.</p>
     <div class="hero-actions">
       <a href="#" class="btn btn-primary" id="heroStartBtn">Criar minha conta</a>
-      <a href="#planos" class="btn btn-ghost">Ver planos</a>
+      <a href="#" class="hero-login-link" id="heroLoginLink">Já tenho conta</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="num mono">100%</div><div class="lbl">Personalizado</div></div>
@@ -302,27 +315,46 @@
   </div>
 
   <div class="wizard-body">
-    <!-- ---- passo 1: criar conta ---- -->
+    <!-- ---- passo 1: criar conta / entrar ---- -->
     <div class="wizard-inner" id="stepAccount">
-      <h2>Crie sua conta</h2>
+      <h2 id="accountTitle">Crie sua conta</h2>
       <p class="wizard-sub">Nome, e-mail e senha pra guardar seu treino.</p>
-      <label class="field">Nome completo
-        <input type="text" id="accName" placeholder="Como podemos te chamar?">
-      </label>
-      <label class="field">E-mail
-        <input type="text" id="accEmail" placeholder="seuemail@exemplo.com">
-      </label>
-      <label class="field">Senha
-        <input type="password" id="accPass" placeholder="Crie uma senha (mín. 6 caracteres)">
-      </label>
+
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" id="tabSignup">Criar conta</button>
+        <button type="button" class="auth-tab" id="tabLogin">Já tenho conta</button>
+      </div>
+
+      <div id="signupFields">
+        <label class="field">Nome completo
+          <input type="text" id="accName" placeholder="Como podemos te chamar?">
+        </label>
+        <label class="field">E-mail
+          <input type="text" id="accEmail" placeholder="seuemail@exemplo.com">
+        </label>
+        <label class="field">Senha
+          <input type="password" id="accPass" placeholder="Crie uma senha (mín. 6 caracteres)">
+        </label>
+      </div>
+
+      <div id="loginFields" style="display:none;">
+        <label class="field">E-mail
+          <input type="text" id="loginEmail" placeholder="seuemail@exemplo.com">
+        </label>
+        <label class="field">Senha
+          <input type="password" id="loginPass" placeholder="Sua senha">
+        </label>
+      </div>
+
       <p class="form-error" id="accError">Preencha nome, e-mail e uma senha com pelo menos 6 caracteres.</p>
+      <p class="form-hint" id="accHint" style="display:none;"></p>
     </div>
 
     <!-- ---- passo 2: escolher plano ---- -->
     <div class="wizard-inner wide" id="stepPlan" style="display:none;">
       <h2>Escolha seu plano</h2>
       <p class="wizard-sub">Pode trocar quando quiser, direto no seu painel.</p>
-      <div class="wizard-plan-grid">
+      <div class="wizard-plan-grid" id="planGrid">
         <div class="wizard-plan-card" data-plan="free">
           <div class="wp-name display">Free</div>
           <div class="wp-price mono">R$0 <span class="p">/sempre</span></div>
@@ -352,6 +384,12 @@
         </div>
       </div>
       <p class="form-error" id="planError" style="text-align:center; margin-top:18px;">Escolha um plano pra continuar.</p>
+
+      <div class="waiting-box" id="waitingBox" style="display:none;">
+        <div class="spinner"></div>
+        <p>Aguardando a confirmação do pagamento... Isso costuma ser automático e rápido.<br>Já pagou? Clique abaixo pra verificar.</p>
+        <button type="button" class="btn btn-ghost btn-sm" id="checkPaymentBtn">Já paguei, verificar agora</button>
+      </div>
     </div>
 
     <!-- ---- passo 3: informações ---- -->
@@ -401,20 +439,21 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (function(){
-  /* ============ estado persistido (localStorage) ============ */
-  const STORE_KEY = 'fitlog_state_v1';
-  function loadState(){
-    try{ return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
-    catch(e){ return {}; }
-  }
-  function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+  /* ============ Supabase ============ */
+  const SUPABASE_URL = 'https://lwzqykkjlqbimvnwlggp.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_rqr_-nUOdjRBkXQClCXvJg_TGMMKIf6';
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  let state = loadState();
-  state.account = state.account || null;
-  state.plan = state.plan || null;
-  state.profile = state.profile || null;
+  const CAKTO_LINKS = {
+    pro: 'https://pay.cakto.com.br/3eneu2p_1073035',
+    premium: 'https://pay.cakto.com.br/38ykru3_1073051'
+  };
+
+  let currentUser = null;
+  let profile = null;
 
   /* ============ pools de exercícios ============ */
   const POOLS = {
@@ -490,6 +529,15 @@
   }
   function escapeHtml(str){ const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
 
+  /* ============ perfil (Supabase) ============ */
+  async function fetchProfile(){
+    if(!currentUser) return null;
+    const { data, error } = await sb.from('profiles').select('*').eq('id', currentUser.id).maybeSingle();
+    if(error){ console.error(error); return null; }
+    profile = data;
+    return profile;
+  }
+
   /* ============ wizard: navegação ============ */
   const wizard = document.getElementById('wizard');
   const wizardProgressFill = document.getElementById('wizardProgressFill');
@@ -499,12 +547,16 @@
   const stepAccount = document.getElementById('stepAccount');
   const stepPlan = document.getElementById('stepPlan');
   const stepInfo = document.getElementById('stepInfo');
+  const waitingBox = document.getElementById('waitingBox');
+  const planGrid = document.getElementById('planGrid');
 
   let wizardStep = 1;
   let wizardMode = 'onboarding'; // 'onboarding' | 'changePlan' | 'editInfo'
+  let authMode = 'signup'; // 'signup' | 'login'
   let selectedPlan = null;
   let selectedLocation = null;
   let selectedFreq = null;
+  let pollInterval = null;
 
   const STEP_TOTAL = 3;
 
@@ -515,19 +567,25 @@
     wizard.classList.add('open');
     renderWizardStep();
   }
-  function closeWizard(){ wizard.classList.remove('open'); }
+  function closeWizard(){
+    wizard.classList.remove('open');
+    if(pollInterval){ clearInterval(pollInterval); pollInterval = null; }
+  }
 
   function renderWizardStep(){
     stepAccount.style.display = 'none';
     stepPlan.style.display = 'none';
     stepInfo.style.display = 'none';
+    waitingBox.style.display = 'none';
+    planGrid.style.display = 'grid';
+    wizardNextBtn.style.display = 'block';
     wizardBackBtn.style.visibility = wizardStep === 1 && wizardMode === 'onboarding' ? 'hidden' : 'visible';
 
     if(wizardStep === 1){
       stepAccount.style.display = 'block';
       wizardStepCount.textContent = 'Passo 1 de ' + STEP_TOTAL;
       wizardProgressFill.style.width = (100/3) + '%';
-      wizardNextBtn.textContent = 'Continuar';
+      wizardNextBtn.textContent = authMode === 'signup' ? 'Continuar' : 'Entrar';
     } else if(wizardStep === 2){
       stepPlan.style.display = 'block';
       wizardStepCount.textContent = 'Passo 2 de ' + STEP_TOTAL;
@@ -553,6 +611,27 @@
     else { closeWizard(); }
   });
 
+  /* ---- passo 1: tabs criar conta / entrar ---- */
+  const tabSignup = document.getElementById('tabSignup');
+  const tabLogin = document.getElementById('tabLogin');
+  const signupFields = document.getElementById('signupFields');
+  const loginFields = document.getElementById('loginFields');
+  const accountTitle = document.getElementById('accountTitle');
+
+  function setAuthMode(mode){
+    authMode = mode;
+    tabSignup.classList.toggle('active', mode === 'signup');
+    tabLogin.classList.toggle('active', mode === 'login');
+    signupFields.style.display = mode === 'signup' ? 'block' : 'none';
+    loginFields.style.display = mode === 'login' ? 'block' : 'none';
+    accountTitle.textContent = mode === 'signup' ? 'Crie sua conta' : 'Entre na sua conta';
+    wizardNextBtn.textContent = mode === 'signup' ? 'Continuar' : 'Entrar';
+    document.getElementById('accError').classList.remove('show');
+    document.getElementById('accHint').style.display = 'none';
+  }
+  tabSignup.addEventListener('click', () => setAuthMode('signup'));
+  tabLogin.addEventListener('click', () => setAuthMode('login'));
+
   /* ---- passo 2: seleção de plano ---- */
   function renderPlanSelection(){
     document.querySelectorAll('.wizard-plan-card').forEach(card => {
@@ -566,6 +645,33 @@
       renderPlanSelection();
     });
   });
+
+  function startWaitingForPayment(planKey){
+    planGrid.style.display = 'none';
+    wizardNextBtn.style.display = 'none';
+    waitingBox.style.display = 'block';
+    window.open(CAKTO_LINKS[planKey], '_blank');
+
+    async function poll(){
+      await fetchProfile();
+      if(profile && profile.plan === planKey){
+        clearInterval(pollInterval);
+        pollInterval = null;
+        planGrid.style.display = 'grid';
+        wizardNextBtn.style.display = 'block';
+        waitingBox.style.display = 'none';
+        if(wizardMode === 'changePlan'){
+          closeWizard();
+          openDashboard();
+        } else {
+          wizardStep = 3;
+          renderWizardStep();
+        }
+      }
+    }
+    pollInterval = setInterval(poll, 4000);
+    document.getElementById('checkPaymentBtn').onclick = poll;
+  }
 
   /* ---- passo 3: pills de local (trava combos pro Premium) ---- */
   const LOCATION_OPTIONS = [
@@ -581,7 +687,7 @@
     const isPremium = selectedPlan === 'premium';
     group.innerHTML = '';
     LOCATION_OPTIONS.forEach(opt => {
-      if(opt.premiumOnly && !isPremium) return; // só aparece pra quem é Premium
+      if(opt.premiumOnly && !isPremium) return;
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'pill' + (selectedLocation === opt.value ? ' active' : '');
@@ -612,33 +718,68 @@
     }
   }
   function prefillInfoIfEditing(){
-    if(state.profile){
-      document.getElementById('qWeight').value = state.profile.weight || '';
-      document.getElementById('qHeight').value = state.profile.height || '';
-      document.getElementById('qAge').value = state.profile.age || '';
-      selectedLocation = state.profile.location || null;
-      selectedFreq = state.profile.frequency || null;
+    if(profile){
+      document.getElementById('qWeight').value = profile.weight || '';
+      document.getElementById('qHeight').value = profile.height || '';
+      document.getElementById('qAge').value = profile.age || '';
+      selectedLocation = profile.location || null;
+      selectedFreq = profile.frequency || null;
       renderLocationPills();
       renderFreqPills();
     }
   }
 
   /* ---- botão continuar (varia por passo) ---- */
-  wizardNextBtn.addEventListener('click', () => {
+  wizardNextBtn.addEventListener('click', async () => {
     if(wizardStep === 1){
-      const name = document.getElementById('accName').value.trim();
-      const email = document.getElementById('accEmail').value.trim();
-      const pass = document.getElementById('accPass').value;
       const err = document.getElementById('accError');
-      if(!name || !email || pass.length < 6){
-        err.classList.add('show');
-        return;
-      }
+      const hint = document.getElementById('accHint');
       err.classList.remove('show');
-      state.account = { name, email };
-      saveState();
-      wizardStep = 2;
-      renderWizardStep();
+      hint.style.display = 'none';
+
+      if(authMode === 'signup'){
+        const name = document.getElementById('accName').value.trim();
+        const email = document.getElementById('accEmail').value.trim();
+        const pass = document.getElementById('accPass').value;
+        if(!name || !email || pass.length < 6){
+          err.textContent = 'Preencha nome, e-mail e uma senha com pelo menos 6 caracteres.';
+          err.classList.add('show');
+          return;
+        }
+        const { data, error } = await sb.auth.signUp({ email, password: pass, options: { data: { full_name: name } } });
+        if(error){
+          err.textContent = (error.message || '').includes('registered') ? 'Esse e-mail já tem uma conta. Tente entrar.' : 'Não foi possível criar a conta. Tente novamente.';
+          err.classList.add('show');
+          return;
+        }
+        if(data.session){
+          currentUser = data.user;
+          await fetchProfile();
+          wizardStep = 2;
+          renderWizardStep();
+        } else {
+          hint.textContent = 'Conta criada! Verifique seu e-mail pra confirmar, depois volte aqui e clique em "Já tenho conta".';
+          hint.style.display = 'block';
+        }
+      } else {
+        const email = document.getElementById('loginEmail').value.trim();
+        const pass = document.getElementById('loginPass').value;
+        if(!email || !pass){
+          err.textContent = 'Preencha e-mail e senha.';
+          err.classList.add('show');
+          return;
+        }
+        const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
+        if(error){
+          err.textContent = 'E-mail ou senha incorretos.';
+          err.classList.add('show');
+          return;
+        }
+        currentUser = data.user;
+        await fetchProfile();
+        closeWizard();
+        openDashboard();
+      }
       return;
     }
 
@@ -646,22 +787,22 @@
       const err = document.getElementById('planError');
       if(!selectedPlan){ err.classList.add('show'); return; }
       err.classList.remove('show');
-      state.plan = selectedPlan;
-      saveState();
 
-      if(wizardMode === 'changePlan'){
-        // se mudou de plano, precisa reconferir se o local escolhido ainda é válido
-        const stillValid = LOCATION_OPTIONS.find(o => o.value === selectedLocation) &&
-          (!LOCATION_OPTIONS.find(o => o.value === selectedLocation).premiumOnly || selectedPlan === 'premium');
-        if(!stillValid) selectedLocation = null;
-        const maxFreq = selectedPlan === 'free' ? 3 : 6;
-        if(selectedFreq && selectedFreq > maxFreq) selectedFreq = null;
-        closeWizard();
-        openDashboard();
+      if(selectedPlan === 'free'){
+        await sb.from('profiles').update({ plan: 'free', updated_at: new Date().toISOString() }).eq('id', currentUser.id);
+        await fetchProfile();
+        if(wizardMode === 'changePlan'){
+          closeWizard();
+          openDashboard();
+        } else {
+          wizardStep = 3;
+          renderWizardStep();
+        }
         return;
       }
-      wizardStep = 3;
-      renderWizardStep();
+
+      // pro ou premium: manda pro checkout da Cakto e espera confirmação
+      startWaitingForPayment(selectedPlan);
       return;
     }
 
@@ -675,8 +816,11 @@
         return;
       }
       err.classList.remove('show');
-      state.profile = { weight, height, age, location: selectedLocation, frequency: selectedFreq };
-      saveState();
+      await sb.from('profiles').update({
+        weight, height, age, location: selectedLocation, frequency: selectedFreq,
+        updated_at: new Date().toISOString()
+      }).eq('id', currentUser.id);
+      await fetchProfile();
       closeWizard();
       openDashboard();
       return;
@@ -695,25 +839,27 @@
     }[loc] || loc;
   }
 
-  function openDashboard(){
+  async function openDashboard(){
     wizard.classList.remove('open');
     dashboard.classList.add('open');
+    await fetchProfile();
     renderDashboard();
+    subscribeToProfileChanges();
   }
 
   function renderDashboard(){
-    const { account, plan, profile } = state;
-    document.getElementById('dashUserName').textContent = account ? account.name : 'Você';
-    document.getElementById('dashPlanBadge').textContent = planLabel(plan).toUpperCase();
+    if(!profile) return;
+    document.getElementById('dashUserName').textContent = profile.name || 'Você';
+    document.getElementById('dashPlanBadge').textContent = planLabel(profile.plan).toUpperCase();
 
-    if(!profile){
+    if(!profile.weight || !profile.height || !profile.age || !profile.location || !profile.frequency){
       document.getElementById('dashReadouts').innerHTML = '';
       document.getElementById('dashDays').innerHTML = '<p style="color:var(--gray);">Preencha suas informações pra gerar o treino.</p>';
       document.getElementById('dashDiet').innerHTML = '';
       return;
     }
 
-    const { weight, height, age, location, frequency } = profile;
+    const { weight, height, age, location, frequency, plan } = profile;
     const routine = buildRoutine(location, frequency);
     const kcal = estimateCalories(weight, height, age);
     const bmi = (weight / Math.pow(height/100, 2)).toFixed(1);
@@ -758,45 +904,66 @@
         '<button type="button" class="btn btn-primary" id="unlockDietBtn">Assinar Premium</button>' +
         '</div>';
       document.getElementById('unlockDietBtn').addEventListener('click', () => {
-        selectedPlan = state.plan;
+        selectedPlan = profile.plan;
         openWizard(2, 'changePlan');
       });
     }
   }
 
+  /* escuta em tempo real: se o webhook da Cakto mudar o plano, o painel atualiza sozinho */
+  let realtimeChannel = null;
+  function subscribeToProfileChanges(){
+    if(realtimeChannel) sb.removeChannel(realtimeChannel);
+    realtimeChannel = sb
+      .channel('profile-changes')
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles', filter: 'id=eq.' + currentUser.id }, async () => {
+        await fetchProfile();
+        renderDashboard();
+      })
+      .subscribe();
+  }
+
   document.getElementById('changePlanBtn').addEventListener('click', () => {
-    selectedPlan = state.plan;
+    selectedPlan = profile.plan;
     openWizard(2, 'changePlan');
   });
   document.getElementById('editInfoBtn').addEventListener('click', () => {
-    selectedPlan = state.plan;
+    selectedPlan = profile.plan;
     openWizard(3, 'editInfo');
   });
-  document.getElementById('logoutBtn').addEventListener('click', () => {
-    if(confirm('Sair e apagar seus dados deste dispositivo?')){
-      localStorage.removeItem(STORE_KEY);
-      state = { account:null, plan:null, profile:null };
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
+    if(confirm('Sair da sua conta?')){
+      await sb.auth.signOut();
+      if(realtimeChannel) sb.removeChannel(realtimeChannel);
+      currentUser = null; profile = null;
       dashboard.classList.remove('open');
       selectedPlan = null; selectedLocation = null; selectedFreq = null;
       window.scrollTo(0,0);
     }
   });
 
-  /* ============ entrada: começar / retomar sessão ============ */
-  function startFlow(){
+  /* ============ entrada: começar / entrar ============ */
+  function startFlow(mode){
     selectedPlan = null; selectedLocation = null; selectedFreq = null;
+    setAuthMode(mode || 'signup');
     openWizard(1, 'onboarding');
   }
-  document.getElementById('heroStartBtn').addEventListener('click', (e) => { e.preventDefault(); startFlow(); });
-  document.getElementById('heroStartBtn2').addEventListener('click', (e) => { e.preventDefault(); startFlow(); });
+  document.getElementById('heroStartBtn').addEventListener('click', (e) => { e.preventDefault(); startFlow('signup'); });
+  document.getElementById('heroStartBtn2').addEventListener('click', (e) => { e.preventDefault(); startFlow('signup'); });
+  document.getElementById('heroLoginLink').addEventListener('click', (e) => { e.preventDefault(); startFlow('login'); });
 
-  /* se já existe conta salva no navegador, vai direto pro painel */
-  if(state.account && state.plan){
-    selectedPlan = state.plan;
-    selectedLocation = state.profile ? state.profile.location : null;
-    selectedFreq = state.profile ? state.profile.frequency : null;
-    openDashboard();
-  }
+  /* ============ sessão salva: entra direto se já estiver logado ============ */
+  (async function init(){
+    const { data } = await sb.auth.getSession();
+    if(data.session){
+      currentUser = data.session.user;
+      await fetchProfile();
+      if(profile){
+        openDashboard();
+      }
+    }
+    document.getElementById('loadingScreen').style.display = 'none';
+  })();
 })();
 </script>
 
