@@ -980,16 +980,28 @@
       dietHtml += '</div>';
       dietBox.innerHTML = dietHtml;
     } else {
+      const isFree = plan === 'free';
+      const subMessage = isFree
+        ? 'Assine o Pro pra ter o treino completo, sem limite de dias, ou o Premium pra também ter alimentação personalizada feita pra você.'
+        : 'Você já tem o treino completo no Pro — assine o Premium pra também desbloquear a alimentação personalizada.';
       dietBox.innerHTML =
         '<div class="diet-card locked">' +
         '<h3 class="display" style="font-size:19px; margin-bottom:8px;">🔒 Alimentação personalizada</h3>' +
-        '<p style="color:var(--gray); font-size:13.5px; margin-bottom:18px;">Exclusiva do plano Premium.</p>' +
+        '<p style="color:var(--gray); font-size:13.5px; margin-bottom:18px;">' + subMessage + '</p>' +
         '<button type="button" class="btn btn-primary" id="unlockDietBtn">Assinar Premium</button>' +
+        (isFree ? '<button type="button" class="btn btn-ghost btn-sm" id="seeProBtn" style="margin-top:10px;">Ver o plano Pro</button>' : '') +
         '</div>';
       document.getElementById('unlockDietBtn').addEventListener('click', () => {
         selectedPlan = profile.plan;
         openWizard(2, 'changePlan');
       });
+      const seeProBtn = document.getElementById('seeProBtn');
+      if(seeProBtn){
+        seeProBtn.addEventListener('click', () => {
+          selectedPlan = profile.plan;
+          openWizard(2, 'changePlan');
+        });
+      }
     }
   }
 
