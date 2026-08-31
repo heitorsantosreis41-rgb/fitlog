@@ -30,7 +30,7 @@
   .wrap{max-width:1160px; margin:0 auto; padding:0 24px;}
   .mono{font-family:var(--font-mono);}
   .display{font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.01em;}
-
+ 
   header{position:sticky; top:0; z-index:50; background:var(--white); border-bottom:1px solid var(--line);}
   .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
   .logo{font-family:var(--font-display); font-size:26px;}
@@ -40,7 +40,7 @@
   .nav-links a:hover{color:var(--ink);}
   .nav-cta{background:var(--ink); color:var(--white); padding:10px 20px; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
   @media (max-width:720px){ .nav-links{display:none;} }
-
+ 
   .hero{padding:88px 0 60px;}
   .hero-eyebrow{font-family:var(--font-mono); font-size:12px; letter-spacing:0.12em; color:var(--red); text-transform:uppercase; display:flex; align-items:center; gap:10px; margin-bottom:22px;}
   .hero-eyebrow::before{content:''; width:8px; height:8px; background:var(--red); border-radius:50%; display:inline-block; animation:blink 1.6s ease-in-out infinite;}
@@ -58,17 +58,17 @@
   .btn-block{width:100%;}
   .btn-sm{padding:11px 18px; font-size:12px;}
   .btn:disabled{opacity:.4; pointer-events:none;}
-
+ 
   .hero-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:70px; border-top:1px solid var(--line); padding-top:26px; max-width:640px;}
   .hero-stat .num{font-family:var(--font-mono); font-size:30px; font-weight:700; color:var(--red);}
   .hero-stat .lbl{font-size:12px; color:var(--gray); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px;}
-
+ 
   section{padding:90px 0;}
   .section-paper{background:var(--paper);}
   .kicker{font-family:var(--font-mono); font-size:12px; letter-spacing:0.12em; color:var(--red); text-transform:uppercase; margin-bottom:14px;}
   h2.section-title{font-family:var(--font-display); font-size:clamp(30px,4.6vw,52px); line-height:1; max-width:640px; margin-bottom:16px;}
   p.section-sub{color:var(--gray); font-size:16px; max-width:520px; margin-bottom:48px;}
-
+ 
   .pricing-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px;}
   .plan-card{border:2px solid var(--line); padding:40px 34px; position:relative; background:var(--white); display:flex; flex-direction:column;}
   .plan-card.featured{border-color:var(--red); background:var(--ink); color:var(--white);}
@@ -84,25 +84,25 @@
   .plan-features{list-style:none; display:flex; flex-direction:column; gap:13px; margin-bottom:34px; flex:1;}
   .plan-features li{font-size:14px; display:flex; gap:10px; align-items:flex-start;}
   .plan-features li::before{content:'—'; color:var(--red); font-weight:700; flex-shrink:0;}
-
+ 
   .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
   .step-card .step-n{font-family:var(--font-mono); color:var(--red); font-size:13px; margin-bottom:14px;}
   .step-card h4{font-family:var(--font-display); font-size:19px; margin-bottom:8px;}
   .step-card p{font-size:13.5px; color:var(--gray);}
-
+ 
   footer{background:var(--ink); color:#cbb9b6; padding:60px 0 30px;}
   .footer-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:24px;}
   .footer-logo{font-family:var(--font-display); color:var(--white); font-size:22px;}
   .footer-logo span{color:var(--red);}
   .footer-note{font-size:13px; max-width:340px;}
   .footer-bottom{display:flex; justify-content:space-between; font-size:12px; flex-wrap:wrap; gap:10px;}
-
+ 
   @media (max-width:860px){
     .pricing-grid{grid-template-columns:1fr;}
     .steps{grid-template-columns:1fr 1fr;}
     .hero-stats{grid-template-columns:repeat(3,1fr); gap:14px;}
   }
-
+ 
   /* ================= WIZARD ================= */
   .wizard{position:fixed; inset:0; background:var(--white); z-index:300; display:none; flex-direction:column;}
   .wizard.open{display:flex;}
@@ -118,25 +118,25 @@
   .wizard-inner h2{font-family:var(--font-display); font-size:clamp(26px,5vw,38px); margin-bottom:12px; line-height:1.05;}
   .wizard-inner p.wizard-sub{color:var(--gray); font-size:14.5px; margin-bottom:36px; max-width:400px; margin-left:auto; margin-right:auto;}
   .wizard-footer{padding:20px 24px 30px; flex-shrink:0; max-width:440px; width:100%; margin:0 auto;}
-
+ 
   label.field{display:block; margin-bottom:18px; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; color:var(--ink); text-align:left;}
   label.field input, label.field select{display:block; width:100%; margin-top:8px; padding:13px 14px; border:1.5px solid var(--line); font-size:15px; font-weight:500; font-family:var(--font-body); border-radius:var(--radius); background:var(--white); transition:border-color .12s;}
   label.field input:focus, label.field select:focus{outline:none; border-color:var(--red);}
   .field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-
+ 
   .form-error{display:none; color:var(--red); font-size:12.5px; margin:-8px 0 14px; text-align:left;}
   .form-error.show{display:block;}
   .form-hint{font-size:12.5px; color:var(--gray); margin:-8px 0 14px; text-align:left;}
-
+ 
   .auth-tabs{display:flex; gap:8px; margin-bottom:26px;}
   .auth-tab{flex:1; padding:11px; text-align:center; font-size:12px; font-weight:700; border:1.5px solid var(--line); text-transform:uppercase; border-radius:999px;}
   .auth-tab.active{background:var(--ink); color:var(--white); border-color:var(--ink);}
-
+ 
   .pill-group{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
   .pill{padding:11px 16px; border:1.5px solid var(--line); font-size:13px; font-weight:600; border-radius:999px; color:var(--gray); transition:all .12s;}
   .pill.active{background:var(--ink); color:var(--white); border-color:var(--ink);}
   .pill:hover{border-color:var(--ink);}
-
+ 
   .wizard-plan-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; text-align:left;}
   .wizard-plan-card{border:2px solid var(--line); padding:26px 22px; cursor:pointer; transition:border-color .12s;}
   .wizard-plan-card:hover{border-color:var(--ink);}
@@ -148,12 +148,12 @@
   .wizard-plan-card li{font-size:12.5px; display:flex; gap:6px; color:var(--ink);}
   .wizard-plan-card li::before{content:'—'; color:var(--red); font-weight:700; flex-shrink:0;}
   @media (max-width:720px){ .wizard-plan-grid{grid-template-columns:1fr;} }
-
+ 
   .waiting-box{border:2px dashed var(--line); padding:30px 24px; text-align:center; margin-top:10px;}
   .waiting-box .spinner{width:28px; height:28px; border:3px solid var(--line); border-top-color:var(--red); border-radius:50%; margin:0 auto 16px; animation:spin 0.8s linear infinite;}
   @keyframes spin{ to{ transform:rotate(360deg); } }
   .waiting-box p{font-size:13.5px; color:var(--gray); margin-bottom:16px;}
-
+ 
   /* ---------- dashboard ---------- */
   .dashboard{position:fixed; inset:0; background:var(--white); z-index:290; display:none; overflow-y:auto;}
   .dashboard.open{display:block;}
@@ -184,12 +184,12 @@
 </style>
 </head>
 <body>
-
+ 
 <div class="loading-screen" id="loadingScreen">
   <div class="spinner"></div>
   <p class="mono" style="font-size:12px; color:var(--gray); text-transform:uppercase;">Carregando</p>
 </div>
-
+ 
 <header>
   <div class="wrap nav">
     <div class="logo">Fit<span>Log</span></div>
@@ -200,7 +200,7 @@
     <a href="#" class="nav-cta" id="heroStartBtn2">Começar</a>
   </div>
 </header>
-
+ 
 <section class="hero">
   <div class="wrap">
     <div class="hero-eyebrow mono">Treino personalizado</div>
@@ -217,7 +217,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section id="planos" class="section-paper">
   <div class="wrap">
     <div class="kicker mono">Planos</div>
@@ -261,7 +261,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section id="como-funciona">
   <div class="wrap">
     <div class="kicker mono">O processo</div>
@@ -290,7 +290,7 @@
     </div>
   </div>
 </section>
-
+ 
 <footer>
   <div class="wrap">
     <div class="footer-top">
@@ -305,7 +305,7 @@
     </div>
   </div>
 </footer>
-
+ 
 <!-- ================= WIZARD ================= -->
 <div class="wizard" id="wizard">
   <div class="wizard-progress-track"><div class="wizard-progress-fill" id="wizardProgressFill"></div></div>
@@ -313,18 +313,18 @@
     <button type="button" class="wizard-back" id="wizardBackBtn">← Voltar</button>
     <span class="wizard-stepcount mono" id="wizardStepCount">Passo 1 de 3</span>
   </div>
-
+ 
   <div class="wizard-body">
     <!-- ---- passo 1: criar conta / entrar ---- -->
     <div class="wizard-inner" id="stepAccount">
       <h2 id="accountTitle">Crie sua conta</h2>
       <p class="wizard-sub">Nome, e-mail e senha pra guardar seu treino.</p>
-
+ 
       <div class="auth-tabs">
         <button type="button" class="auth-tab active" id="tabSignup">Criar conta</button>
         <button type="button" class="auth-tab" id="tabLogin">Já tenho conta</button>
       </div>
-
+ 
       <div id="signupFields">
         <label class="field">Nome completo
           <input type="text" id="accName" placeholder="Como podemos te chamar?">
@@ -336,7 +336,7 @@
           <input type="password" id="accPass" placeholder="Crie uma senha (mín. 6 caracteres)">
         </label>
       </div>
-
+ 
       <div id="loginFields" style="display:none;">
         <label class="field">E-mail
           <input type="text" id="loginEmail" placeholder="seuemail@exemplo.com">
@@ -345,11 +345,11 @@
           <input type="password" id="loginPass" placeholder="Sua senha">
         </label>
       </div>
-
+ 
       <p class="form-error" id="accError">Preencha nome, e-mail e uma senha com pelo menos 6 caracteres.</p>
       <p class="form-hint" id="accHint" style="display:none;"></p>
     </div>
-
+ 
     <!-- ---- passo 2: escolher plano ---- -->
     <div class="wizard-inner wide" id="stepPlan" style="display:none;">
       <h2>Escolha seu plano</h2>
@@ -384,14 +384,14 @@
         </div>
       </div>
       <p class="form-error" id="planError" style="text-align:center; margin-top:18px;">Escolha um plano pra continuar.</p>
-
+ 
       <div class="waiting-box" id="waitingBox" style="display:none;">
         <div class="spinner"></div>
         <p>Aguardando a confirmação do pagamento... Isso costuma ser automático e rápido.<br>Já pagou? Clique abaixo pra verificar.</p>
         <button type="button" class="btn btn-ghost btn-sm" id="checkPaymentBtn">Já paguei, verificar agora</button>
       </div>
     </div>
-
+ 
     <!-- ---- passo 3: informações ---- -->
     <div class="wizard-inner" id="stepInfo" style="display:none;">
       <h2>Fale sobre você</h2>
@@ -407,6 +407,9 @@
       <label class="field">Idade
         <input type="number" id="qAge" placeholder="Ex: 29" min="12" max="90">
       </label>
+      <label class="field">Qual seu objetivo?
+        <div class="pill-group" id="goalGroup"></div>
+      </label>
       <label class="field">Onde você treina?
         <div class="pill-group" id="locationGroup"></div>
       </label>
@@ -416,12 +419,12 @@
       <p class="form-error" id="infoError">Preencha todos os campos pra gerar seu treino.</p>
     </div>
   </div>
-
+ 
   <div class="wizard-footer">
     <button type="button" class="btn btn-primary btn-block" id="wizardNextBtn">Continuar</button>
   </div>
 </div>
-
+ 
 <!-- ================= DASHBOARD ================= -->
 <div class="dashboard" id="dashboard">
   <div class="dash-header">
@@ -438,7 +441,7 @@
     <div id="dashDiet"></div>
   </div>
 </div>
-
+ 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (function(){
@@ -446,15 +449,15 @@
   const SUPABASE_URL = 'https://lwzqykkjlqbimvnwlggp.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_rqr_-nUOdjRBkXQClCXvJg_TGMMKIf6';
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
+ 
   const CAKTO_LINKS = {
     pro: 'https://pay.cakto.com.br/3eneu2p_1073035',
     premium: 'https://pay.cakto.com.br/38ykru3_1073051'
   };
-
+ 
   let currentUser = null;
   let profile = null;
-
+ 
   /* ============ pools de exercícios ============ */
   const POOLS = {
     casa: {
@@ -483,7 +486,7 @@
     }
   };
   const DAY_NAMES = ['Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'];
-
+ 
   function splitForFrequency(freq){
     if(freq <= 3) return Array(freq).fill('fullbody');
     if(freq === 4) return ['upper','lower','upper','lower'];
@@ -528,7 +531,7 @@
     };
   }
   function escapeHtml(str){ const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
-
+ 
   /* ============ perfil (Supabase) ============ */
   async function fetchProfile(){
     if(!currentUser) return null;
@@ -537,7 +540,7 @@
     profile = data;
     return profile;
   }
-
+ 
   /* ============ wizard: navegação ============ */
   const wizard = document.getElementById('wizard');
   const wizardProgressFill = document.getElementById('wizardProgressFill');
@@ -549,17 +552,18 @@
   const stepInfo = document.getElementById('stepInfo');
   const waitingBox = document.getElementById('waitingBox');
   const planGrid = document.getElementById('planGrid');
-
+ 
   let wizardStep = 1;
   let wizardMode = 'onboarding'; // 'onboarding' | 'changePlan' | 'editInfo'
   let authMode = 'signup'; // 'signup' | 'login'
   let selectedPlan = null;
   let selectedLocation = null;
   let selectedFreq = null;
+  let selectedGoal = null;
   let pollInterval = null;
-
+ 
   const STEP_TOTAL = 3;
-
+ 
   function openWizard(startStep, mode){
     wizardMode = mode || 'onboarding';
     wizardStep = startStep || 1;
@@ -571,7 +575,7 @@
     wizard.classList.remove('open');
     if(pollInterval){ clearInterval(pollInterval); pollInterval = null; }
   }
-
+ 
   function renderWizardStep(){
     stepAccount.style.display = 'none';
     stepPlan.style.display = 'none';
@@ -580,7 +584,7 @@
     planGrid.style.display = 'grid';
     wizardNextBtn.style.display = 'block';
     wizardBackBtn.style.visibility = wizardStep === 1 && wizardMode === 'onboarding' ? 'hidden' : 'visible';
-
+ 
     if(wizardStep === 1){
       stepAccount.style.display = 'block';
       wizardStepCount.textContent = 'Passo 1 de ' + STEP_TOTAL;
@@ -597,6 +601,7 @@
       wizardStepCount.textContent = 'Passo 3 de ' + STEP_TOTAL;
       wizardProgressFill.style.width = '100%';
       wizardNextBtn.textContent = mode3ButtonLabel();
+      renderGoalPills();
       renderLocationPills();
       renderFreqPills();
       prefillInfoIfEditing();
@@ -605,19 +610,19 @@
   function mode3ButtonLabel(){
     return wizardMode === 'editInfo' ? 'Salvar informações' : 'Gerar meu treino';
   }
-
+ 
   wizardBackBtn.addEventListener('click', () => {
     if(wizardStep > 1){ wizardStep -= 1; renderWizardStep(); }
     else { closeWizard(); }
   });
-
+ 
   /* ---- passo 1: tabs criar conta / entrar ---- */
   const tabSignup = document.getElementById('tabSignup');
   const tabLogin = document.getElementById('tabLogin');
   const signupFields = document.getElementById('signupFields');
   const loginFields = document.getElementById('loginFields');
   const accountTitle = document.getElementById('accountTitle');
-
+ 
   function setAuthMode(mode){
     authMode = mode;
     tabSignup.classList.toggle('active', mode === 'signup');
@@ -631,7 +636,7 @@
   }
   tabSignup.addEventListener('click', () => setAuthMode('signup'));
   tabLogin.addEventListener('click', () => setAuthMode('login'));
-
+ 
   /* ---- passo 2: seleção de plano ---- */
   function renderPlanSelection(){
     document.querySelectorAll('.wizard-plan-card').forEach(card => {
@@ -645,13 +650,13 @@
       renderPlanSelection();
     });
   });
-
+ 
   function startWaitingForPayment(planKey){
     planGrid.style.display = 'none';
     wizardNextBtn.style.display = 'none';
     waitingBox.style.display = 'block';
     window.open(CAKTO_LINKS[planKey], '_blank');
-
+ 
     async function poll(){
       await fetchProfile();
       if(profile && profile.plan === planKey){
@@ -672,7 +677,29 @@
     pollInterval = setInterval(poll, 4000);
     document.getElementById('checkPaymentBtn').onclick = poll;
   }
-
+ 
+  /* ---- passo 3: pills de objetivo ---- */
+  const GOAL_OPTIONS = [
+    { value:'ganhar_massa', label:'Ganhar massa muscular' },
+    { value:'perder_gordura', label:'Perder gordura' }
+  ];
+  function renderGoalPills(){
+    const group = document.getElementById('goalGroup');
+    group.innerHTML = '';
+    GOAL_OPTIONS.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'pill' + (selectedGoal === opt.value ? ' active' : '');
+      btn.textContent = opt.label;
+      btn.dataset.value = opt.value;
+      btn.addEventListener('click', () => {
+        selectedGoal = opt.value;
+        renderGoalPills();
+      });
+      group.appendChild(btn);
+    });
+  }
+ 
   /* ---- passo 3: pills de local (trava combos pro Premium) ---- */
   const LOCATION_OPTIONS = [
     { value:'casa', label:'Casa', premiumOnly:false },
@@ -724,11 +751,13 @@
       document.getElementById('qAge').value = profile.age || '';
       selectedLocation = profile.location || null;
       selectedFreq = profile.frequency || null;
+      selectedGoal = profile.goal || null;
+      renderGoalPills();
       renderLocationPills();
       renderFreqPills();
     }
   }
-
+ 
   /* ---- botão continuar (varia por passo) ---- */
   wizardNextBtn.addEventListener('click', async () => {
     if(wizardStep === 1){
@@ -736,7 +765,7 @@
       const hint = document.getElementById('accHint');
       err.classList.remove('show');
       hint.style.display = 'none';
-
+ 
       if(authMode === 'signup'){
         const name = document.getElementById('accName').value.trim();
         const email = document.getElementById('accEmail').value.trim();
@@ -782,12 +811,12 @@
       }
       return;
     }
-
+ 
     if(wizardStep === 2){
       const err = document.getElementById('planError');
       if(!selectedPlan){ err.classList.add('show'); return; }
       err.classList.remove('show');
-
+ 
       if(selectedPlan === 'free'){
         await sb.from('profiles').update({ plan: 'free', updated_at: new Date().toISOString() }).eq('id', currentUser.id);
         await fetchProfile();
@@ -800,24 +829,24 @@
         }
         return;
       }
-
+ 
       // pro ou premium: manda pro checkout da Cakto e espera confirmação
       startWaitingForPayment(selectedPlan);
       return;
     }
-
+ 
     if(wizardStep === 3){
       const weight = Number(document.getElementById('qWeight').value);
       const height = Number(document.getElementById('qHeight').value);
       const age = Number(document.getElementById('qAge').value);
       const err = document.getElementById('infoError');
-      if(!weight || !height || !age || !selectedLocation || !selectedFreq){
+      if(!weight || !height || !age || !selectedGoal || !selectedLocation || !selectedFreq){
         err.classList.add('show');
         return;
       }
       err.classList.remove('show');
       const { error: updateError } = await sb.from('profiles').update({
-        weight, height, age, location: selectedLocation, frequency: selectedFreq,
+        weight, height, age, goal: selectedGoal, location: selectedLocation, frequency: selectedFreq,
         updated_at: new Date().toISOString()
       }).eq('id', currentUser.id);
       if(updateError){
@@ -831,10 +860,10 @@
       return;
     }
   });
-
+ 
   /* ============ dashboard ============ */
   const dashboard = document.getElementById('dashboard');
-
+ 
   function planLabel(p){ return {free:'Free', pro:'Pro', premium:'Premium'}[p] || p; }
   function locationLabelFull(loc){
     return {
@@ -843,60 +872,130 @@
       academia_pilates:'Academia e pilates'
     }[loc] || loc;
   }
-
+ 
+  function goalLabel(g){ return {ganhar_massa:'Ganhar massa muscular', perder_gordura:'Perder gordura'}[g] || g; }
+ 
+  let aiPlan = null;
+  let aiPlanKey = null;
+  let aiGenerating = false;
+  let aiError = null;
+ 
+  /* chama a Edge Function generate-workout (Gemini) e guarda o resultado em cache
+     enquanto os dados do perfil não mudarem */
+  async function ensureAIPlan(){
+    if(!profile) return null;
+    const key = [profile.weight, profile.height, profile.age, profile.goal, profile.location, profile.frequency, profile.plan].join('|');
+    if(aiPlan && aiPlanKey === key) return aiPlan;
+    if(aiGenerating) return null;
+ 
+    aiGenerating = true;
+    aiError = null;
+    renderDashboard();
+ 
+    try {
+      const { data, error } = await sb.functions.invoke('generate-workout', {
+        body: {
+          weight: profile.weight, height: profile.height, age: profile.age,
+          goal: profile.goal, location: profile.location, frequency: profile.frequency,
+          plan: profile.plan
+        }
+      });
+      if(error) throw error;
+      aiPlan = data;
+      aiPlanKey = key;
+    } catch(err){
+      console.error('Erro ao gerar treino com IA:', err);
+      aiPlan = null;
+      aiPlanKey = null;
+      aiError = (err && err.message) ? err.message : 'Não foi possível gerar o treino com IA agora.';
+    } finally {
+      aiGenerating = false;
+    }
+    renderDashboard();
+    return aiPlan;
+  }
+ 
   async function openDashboard(){
     wizard.classList.remove('open');
     dashboard.classList.add('open');
     await fetchProfile();
+    aiPlan = null; aiPlanKey = null; aiError = null;
     renderDashboard();
+    ensureAIPlan();
     subscribeToProfileChanges();
   }
-
+ 
   function renderDashboard(){
     if(!profile) return;
     document.getElementById('dashUserName').textContent = profile.name || 'Você';
     document.getElementById('dashPlanBadge').textContent = planLabel(profile.plan).toUpperCase();
-
-    if(!profile.weight || !profile.height || !profile.age || !profile.location || !profile.frequency){
+ 
+    if(!profile.weight || !profile.height || !profile.age || !profile.goal || !profile.location || !profile.frequency){
       document.getElementById('dashReadouts').innerHTML = '';
       document.getElementById('dashDays').innerHTML = '<p style="color:var(--gray);">Preencha suas informações pra gerar o treino.</p>';
       document.getElementById('dashDiet').innerHTML = '';
       return;
     }
-
-    const { weight, height, age, location, frequency, plan } = profile;
-    const routine = buildRoutine(location, frequency);
-    const kcal = estimateCalories(weight, height, age);
+ 
+    const { weight, height, age, goal, location, frequency, plan } = profile;
+    const kcalFallback = estimateCalories(weight, height, age);
     const bmi = (weight / Math.pow(height/100, 2)).toFixed(1);
-
+ 
+    // se a IA ainda não respondeu, mostra um estado de carregamento
+    if(aiGenerating && !aiPlan){
+      document.getElementById('dashReadouts').innerHTML =
+        '<div class="readout"><div class="n">' + bmi + '</div><div class="l">IMC estimado</div></div>' +
+        '<div class="readout"><div class="n">' + frequency + 'x</div><div class="l">' + escapeHtml(locationLabelFull(location)) + '</div></div>' +
+        '<div class="readout"><div class="n" style="font-size:15px;">' + escapeHtml(goalLabel(goal)) + '</div><div class="l">Objetivo</div></div>';
+      document.getElementById('dashDays').innerHTML = '<div class="waiting-box"><div class="spinner"></div><p>Gerando seu treino com IA...</p></div>';
+      document.getElementById('dashDiet').innerHTML = '';
+      return;
+    }
+ 
+    const routine = (aiPlan && aiPlan.workout && Array.isArray(aiPlan.workout.days) && aiPlan.workout.days.length)
+      ? aiPlan.workout.days
+      : buildRoutine(location, frequency).map(d => ({ day: d.day, focus: d.focusLabel, exercises: d.exercises.map(name => ({ name, sets: 3, reps: '12' })) }));
+    const kcal = (aiPlan && aiPlan.diet && aiPlan.diet.calories) ? aiPlan.diet.calories : kcalFallback;
+ 
     document.getElementById('dashReadouts').innerHTML =
       '<div class="readout"><div class="n">' + kcal + '</div><div class="l">Kcal/dia estimado</div></div>' +
       '<div class="readout"><div class="n">' + bmi + '</div><div class="l">IMC estimado</div></div>' +
-      '<div class="readout"><div class="n">' + frequency + 'x</div><div class="l">' + escapeHtml(locationLabelFull(location)) + '</div></div>';
-
+      '<div class="readout"><div class="n">' + frequency + 'x</div><div class="l">' + escapeHtml(locationLabelFull(location)) + '</div></div>' +
+      '<div class="readout"><div class="n" style="font-size:15px;">' + escapeHtml(goalLabel(goal)) + '</div><div class="l">Objetivo</div></div>';
+ 
     let daysHtml = '';
+    if(aiError){
+      daysHtml += '<p style="color:var(--red); font-size:13px; margin-bottom:14px;">⚠ ' + escapeHtml(aiError) + ' — mostrando um treino padrão enquanto isso.</p>';
+    }
     routine.forEach(d => {
       daysHtml += '<div class="day-card">';
-      daysHtml += '<div class="d-name">' + d.day + '</div><div class="d-focus">' + d.focusLabel + '</div>';
+      daysHtml += '<div class="d-name">' + escapeHtml(d.day) + '</div><div class="d-focus">' + escapeHtml(d.focus) + '</div>';
       daysHtml += '<ul class="exercise-list">';
-      d.exercises.forEach(ex => { daysHtml += '<li>' + escapeHtml(ex) + '<span class="sr">3x12</span></li>'; });
+      d.exercises.forEach(ex => {
+        const name = typeof ex === 'string' ? ex : ex.name;
+        const sets = (typeof ex === 'object' && ex.sets) ? ex.sets : 3;
+        const reps = (typeof ex === 'object' && ex.reps) ? ex.reps : '12';
+        daysHtml += '<li>' + escapeHtml(name) + '<span class="sr">' + escapeHtml(String(sets)) + 'x' + escapeHtml(String(reps)) + '</span></li>';
+      });
       daysHtml += '</ul></div>';
     });
     document.getElementById('dashDays').innerHTML = daysHtml;
-
+ 
     const dietBox = document.getElementById('dashDiet');
     if(plan === 'premium'){
-      const diet = buildDiet(weight, height, age);
+      const diet = (aiPlan && aiPlan.diet) ? aiPlan.diet : buildDiet(weight, height, age);
+      const dietTarget = diet.calories || diet.target;
+      const dietMeals = diet.meals || [];
       let dietHtml = '<div class="diet-card">';
       dietHtml += '<h3 class="display" style="font-size:20px; margin-bottom:6px;">Alimentação personalizada</h3>';
-      dietHtml += '<p style="color:var(--gray); font-size:13px; margin-bottom:16px;">Foco em perda de peso, calculado pro seu corpo.</p>';
+      dietHtml += '<p style="color:var(--gray); font-size:13px; margin-bottom:16px;">Calculada pra seu objetivo: ' + escapeHtml(goalLabel(goal)).toLowerCase() + '.</p>';
       dietHtml += '<div class="diet-macro-row">';
-      dietHtml += '<div class="diet-macro"><div class="n mono">' + diet.target + '</div><div class="l">Kcal/dia alvo</div></div>';
+      dietHtml += '<div class="diet-macro"><div class="n mono">' + dietTarget + '</div><div class="l">Kcal/dia alvo</div></div>';
       dietHtml += '<div class="diet-macro"><div class="n mono">' + diet.protein + 'g</div><div class="l">Proteína</div></div>';
       dietHtml += '<div class="diet-macro"><div class="n mono">' + diet.carbs + 'g</div><div class="l">Carboidrato</div></div>';
       dietHtml += '<div class="diet-macro"><div class="n mono">' + diet.fat + 'g</div><div class="l">Gordura</div></div>';
       dietHtml += '</div>';
-      diet.meals.forEach(m => {
+      dietMeals.forEach(m => {
         dietHtml += '<div class="diet-meal"><b>' + escapeHtml(m.label) + '</b>' + escapeHtml(m.text) + '</div>';
       });
       dietHtml += '</div>';
@@ -914,7 +1013,7 @@
       });
     }
   }
-
+ 
   /* escuta em tempo real: se o webhook da Cakto mudar o plano, o painel atualiza sozinho */
   let realtimeChannel = null;
   function subscribeToProfileChanges(){
@@ -924,10 +1023,11 @@
       .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles', filter: 'id=eq.' + currentUser.id }, async () => {
         await fetchProfile();
         renderDashboard();
+        ensureAIPlan();
       })
       .subscribe();
   }
-
+ 
   document.getElementById('changePlanBtn').addEventListener('click', () => {
     selectedPlan = profile.plan;
     openWizard(2, 'changePlan');
@@ -942,21 +1042,21 @@
       if(realtimeChannel) sb.removeChannel(realtimeChannel);
       currentUser = null; profile = null;
       dashboard.classList.remove('open');
-      selectedPlan = null; selectedLocation = null; selectedFreq = null;
+      selectedPlan = null; selectedLocation = null; selectedFreq = null; selectedGoal = null;
       window.scrollTo(0,0);
     }
   });
-
+ 
   /* ============ entrada: começar / entrar ============ */
   function startFlow(mode){
-    selectedPlan = null; selectedLocation = null; selectedFreq = null;
+    selectedPlan = null; selectedLocation = null; selectedFreq = null; selectedGoal = null;
     setAuthMode(mode || 'signup');
     openWizard(1, 'onboarding');
   }
   document.getElementById('heroStartBtn').addEventListener('click', (e) => { e.preventDefault(); startFlow('signup'); });
   document.getElementById('heroStartBtn2').addEventListener('click', (e) => { e.preventDefault(); startFlow('signup'); });
   document.getElementById('heroLoginLink').addEventListener('click', (e) => { e.preventDefault(); startFlow('login'); });
-
+ 
   /* ============ sessão salva: entra direto se já estiver logado ============ */
   (async function init(){
     const { data } = await sb.auth.getSession();
@@ -971,6 +1071,8 @@
   })();
 })();
 </script>
-
+ 
 </body>
 </html>
+ 
+
